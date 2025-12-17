@@ -3,9 +3,14 @@
  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Kalkulator Harga Jual</title>
-  <script src="/_sdk/element_sdk.js"></script>
+  <meta name="description" content="Kalkulator Harga Jual - Hitung harga jual optimal untuk produk Shopee dengan voucher Akulaku">
+  <meta name="keywords" content="kalkulator harga jual, shopee, akulaku, hitung profit">
+  <meta name="author" content="Kalkulator Harga Jual">
+  <title>Kalkulator Harga Jual - Shopee &amp; Akulaku</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
   <style>
     body {
       box-sizing: border-box;
@@ -15,6 +20,9 @@
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
       background: linear-gradient(135deg, #1a0933 0%, #2d1b4e 50%, #1a0933 100%);
       overflow-x: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     html {
       height: 100%;
@@ -124,58 +132,63 @@
   </style>
   <style>@view-transition { navigation: auto; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="/_sdk/element_sdk.js" type="text/javascript"></script>
  </head>
- <body class="min-h-full p-2 sm:p-3 overflow-y-auto flex items-center justify-center">
-  <main class="w-full h-full flex flex-col orientation-aware"><!-- Home Tab - Full Page -->
-   <div id="content-home" class="tab-content active min-h-full flex flex-col items-center justify-center p-4 sm:p-8"><!-- Welcome Text at Top -->
-    <div class="text-center mb-8 sm:mb-12">
+ <body class="min-h-full overflow-y-auto">
+  <main class="w-full flex flex-col orientation-aware p-2 sm:p-3 my-auto"><!-- Home Tab -->
+   <div id="content-home" class="tab-content active"><!-- Welcome Section -->
+    <div class="text-center mb-6 sm:mb-8">
      <div class="float-animation">
-      <div class="text-6xl sm:text-8xl mb-4">
-       🎯
+      <div class="mb-3 flex justify-center"><img src="https://cdn-icons-png.flaticon.com/128/891/891175.png" alt="Calculator Icon" class="w-16 h-16 sm:w-24 sm:h-24" onerror="this.style.display='none'; this.alt='Icon failed to load';">
       </div>
-      <h1 id="welcome-text" class="text-2xl sm:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 min-h-[3rem] sm:min-h-[4rem]"><span id="typed-text"></span><span class="typing-cursor">|</span></h1>
+      <h1 id="welcome-text" class="text-xl sm:text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 min-h-[2.5rem] sm:min-h-[3rem]"><span id="typed-text"></span><span class="typing-cursor">|</span></h1>
      </div><!-- Date & Time -->
-     <div class="mt-6 bg-gradient-to-r from-purple-900/30 to-pink-900/30 rounded-xl p-4 border border-purple-500/50 backdrop-blur-sm w-fit mx-auto">
-      <div id="current-datetime" class="text-purple-200 text-sm sm:text-base font-medium whitespace-nowrap"></div>
+     <div class="mt-4 bg-gradient-to-r from-purple-900/30 to-pink-900/30 rounded-xl p-3 border border-purple-500/50 backdrop-blur-sm w-fit mx-auto">
+      <div id="current-datetime" class="text-purple-200 text-xs sm:text-sm font-medium whitespace-nowrap"></div>
      </div>
-    </div><!-- Floating Center Cards -->
-    <div class="flex-1 flex items-center justify-center w-full max-w-4xl">
-     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 w-full"><!-- Kalkulator Bersih Card -->
-      <div class="group"><button onclick="switchTab('bersih')" class="w-full bg-gradient-to-br from-purple-900/80 to-purple-800/80 backdrop-blur-lg border-2 border-purple-500/50 rounded-2xl p-6 sm:p-8 text-center transition-all duration-300 hover:scale-105 hover:border-purple-400 hover:shadow-2xl hover:shadow-purple-500/25 active:scale-95">
-        <div class="text-4xl sm:text-6xl mb-4 group-hover:scale-110 transition-transform duration-300">
-         💰
-        </div><h3 class="text-xl sm:text-2xl font-bold text-white mb-3">Kalkulator Bersih</h3><p class="text-purple-200 text-sm sm:text-base mb-4 leading-relaxed">Hitung harga yang Anda terima setelah semua potongan platform</p>
-        <div class="flex items-center justify-center gap-2 text-purple-300 text-xs sm:text-sm"><span class="w-2 h-2 bg-purple-400 rounded-full"></span> <span>Modal + Profit → Harga Bersih</span>
-        </div></button>
-      </div><!-- Kalkulator Kotor Card -->
-      <div class="group"><button onclick="switchTab('kotor')" class="w-full bg-gradient-to-br from-pink-900/80 to-pink-800/80 backdrop-blur-lg border-2 border-pink-500/50 rounded-2xl p-6 sm:p-8 text-center transition-all duration-300 hover:scale-105 hover:border-pink-400 hover:shadow-2xl hover:shadow-pink-500/25 active:scale-95">
-        <div class="text-4xl sm:text-6xl mb-4 group-hover:scale-110 transition-transform duration-300">
-         📊
-        </div><h3 class="text-xl sm:text-2xl font-bold text-white mb-3">Kalkulator Kotor</h3><p class="text-pink-200 text-sm sm:text-base mb-4 leading-relaxed">Hitung harga yang Anda terima sebelum semua potongan platform</p>
-        <div class="flex items-center justify-center gap-2 text-pink-300 text-xs sm:text-sm"><span class="w-2 h-2 bg-pink-400 rounded-full"></span> <span>Modal + Profit → Harga Kotor</span>
-        </div></button>
-      </div>
+    </div><!-- Calculator Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-6 max-w-4xl mx-auto"><!-- Kalkulator Bersih Card -->
+     <div class="group"><button onclick="switchTab('bersih')" class="w-full bg-gradient-to-br from-purple-900/80 to-purple-800/80 backdrop-blur-lg border-2 border-purple-500/50 rounded-2xl p-5 sm:p-6 text-center transition-all duration-300 hover:scale-105 hover:border-purple-400 hover:shadow-2xl hover:shadow-purple-500/25 active:scale-95">
+       <div class="text-3xl sm:text-5xl mb-3 group-hover:scale-110 transition-transform duration-300">
+        💰
+       </div><h3 class="text-lg sm:text-xl font-bold text-white mb-2">Kalkulator Bersih</h3><p class="text-purple-200 text-xs sm:text-sm mb-3 leading-relaxed">Hitung harga yang Anda terima setelah semua potongan platform</p>
+       <div class="flex items-center justify-center gap-2 text-purple-300 text-xs"><span class="w-2 h-2 bg-purple-400 rounded-full"></span> <span>Modal + Profit → Harga Bersih</span>
+       </div></button>
+     </div><!-- Kalkulator Kotor Card -->
+     <div class="group"><button onclick="switchTab('kotor')" class="w-full bg-gradient-to-br from-pink-900/80 to-pink-800/80 backdrop-blur-lg border-2 border-pink-500/50 rounded-2xl p-5 sm:p-6 text-center transition-all duration-300 hover:scale-105 hover:border-pink-400 hover:shadow-2xl hover:shadow-pink-500/25 active:scale-95">
+       <div class="text-3xl sm:text-5xl mb-3 group-hover:scale-110 transition-transform duration-300">
+        📊
+       </div><h3 class="text-lg sm:text-xl font-bold text-white mb-2">Kalkulator Kotor</h3><p class="text-pink-200 text-xs sm:text-sm mb-3 leading-relaxed">Hitung harga tanpa potongan biaya platform</p>
+       <div class="flex items-center justify-center gap-2 text-pink-300 text-xs"><span class="w-2 h-2 bg-pink-400 rounded-full"></span> <span>Modal + Profit = Harga Kotor</span>
+       </div></button>
+     </div><!-- Kalkulator Bundling Card -->
+     <div class="group md:col-span-2"><button onclick="switchTab('bundling')" class="w-full bg-gradient-to-br from-blue-900/80 to-blue-800/80 backdrop-blur-lg border-2 border-blue-500/50 rounded-2xl p-5 sm:p-6 text-center transition-all duration-300 hover:scale-105 hover:border-blue-400 hover:shadow-2xl hover:shadow-blue-500/25 active:scale-95">
+       <div class="text-3xl sm:text-5xl mb-3 group-hover:scale-110 transition-transform duration-300">
+        📦
+       </div><h3 class="text-lg sm:text-xl font-bold text-white mb-2">Kalkulator Bundling</h3><p class="text-blue-200 text-xs sm:text-sm mb-3 leading-relaxed">Hitung harga untuk paket bundling produk</p>
+       <div class="flex items-center justify-center gap-2 text-blue-300 text-xs"><span class="w-2 h-2 bg-blue-400 rounded-full"></span> <span>Harga Satuan × Quantity</span>
+       </div></button>
      </div>
-    </div><!-- Bottom Info -->
-    <div class="mt-8 sm:mt-12 text-center">
-     <div class="bg-gray-900/50 backdrop-blur-sm rounded-xl p-4 border border-gray-700/50">
+    </div><!-- Info Box -->
+    <div class="text-center">
+     <div class="bg-gray-900/50 backdrop-blur-sm rounded-xl p-3 border border-gray-700/50">
       <p class="text-gray-300 text-xs sm:text-sm">Pilih kalkulator sesuai kebutuhan Anda untuk menghitung harga jual yang optimal</p>
      </div>
     </div>
    </div><!-- Calculator Bersih Modal -->
    <div id="modal-bersih" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
     <div class="modal-container bg-gradient-to-br from-gray-900 to-black rounded-2xl shadow-2xl border-2 border-purple-600 w-full max-w-lg"><!-- Header with Close Button -->
-     <div class="bg-gradient-to-r from-gray-900 to-black border-b border-purple-600 p-3 sm:p-4 rounded-t-2xl">
+     <div class="bg-gradient-to-r from-gray-900 to-black border-b border-purple-600 p-3 sm:p-4 rounded-t-2xl sticky top-0 z-10">
       <div class="flex items-center justify-between">
        <h2 class="text-lg sm:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">Kalkulator Harga Jual Bersih</h2><button onclick="switchTab('home')" class="text-gray-400 hover:text-white transition-colors p-1 hover:bg-gray-800 rounded-lg">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
         </svg></button>
       </div>
      </div><!-- Content Area -->
-     <div class="modal-content-wrapper p-3 sm:p-4"><!-- Kalkulator Bersih Tab -->
+     <div class="modal-content-wrapper p-3 sm:p-4 max-h-[calc(90vh-80px)] overflow-y-auto"><!-- Kalkulator Bersih Tab -->
       <div id="content-bersih" class="tab-content active">
        <form id="calculator-form-bersih" class="space-y-2"><!-- Kategori Produk -->
-        <div><label for="kategori-bersih" class="block text-xs font-semibold text-purple-300 mb-1">Kategori Produk</label> <select id="kategori-bersih" class="w-full px-2.5 py-1.5 text-xs sm:text-sm border-2 border-purple-600 rounded-lg focus:border-purple-400 focus:outline-none transition-colors bg-gray-800 text-white"> <option value="">-- Pilih Kategori --</option> <option value="ponsel">Ponsel</option> <option value="pc">PC</option> <option value="aksesoris">Aksesoris Ponsel, Elektronik, Digital</option> <option value="perlengkapan">Perlengkapan Rumah, Fashion, Hobi, Olahraga, Kecantikan, Makanan, Otomotif, Perlengkapan Bayi</option> <option value="ponsel-bekas">Ponsel Bekas (Second)</option> </select>
+        <div><label for="kategori-bersih" class="block text-xs font-semibold text-purple-300 mb-1">Kategori Produk</label> <select id="kategori-bersih" class="w-full px-2.5 py-1.5 text-xs sm:text-sm border-2 border-purple-600 rounded-lg focus:border-purple-400 focus:outline-none transition-colors bg-gray-800 text-white"> <option value="">-- Pilih Kategori --</option> <option value="ponsel">Ponsel</option> <option value="pc">PC</option> <option value="aksesoris">Aksesoris Ponsel, Elektronik, Digital</option> <option value="perlengkapan">Perlengkapan Rumah, Fashion, Hobi, Olahraga, Kecantikan, Makanan, Otomotif, Perlengkapan Bayi </option> <option value="ponsel-bekas">Ponsel Bekas (Second)</option> </select>
         </div><!-- Biaya Layanan (Auto) -->
         <div class="grid grid-cols-2 gap-2">
          <div class="bg-gradient-to-br from-purple-900 to-purple-800 p-2 rounded-lg border border-purple-500"><label class="block text-xs font-semibold text-purple-300 mb-0.5">Biaya Layanan</label>
@@ -197,7 +210,7 @@
         </div><!-- Take Profit -->
         <div><label class="block text-xs font-semibold text-purple-300 mb-1">Take Profit</label>
          <div class="flex gap-2"><!-- Dropdown Pilihan -->
-          <div class="w-24"><select id="take-profit-type-bersih" class="w-full px-2 py-1.5 text-xs sm:text-sm border-2 border-purple-600 rounded-lg focus:border-purple-400 focus:outline-none transition-colors bg-gray-800 text-white"> <option value="">Pilih</option> <option value="percent">%</option> <option value="rupiah">Rp</option> </select>
+          <div class="w-20"><select id="take-profit-type-bersih" class="w-full px-2 py-1.5 text-xs sm:text-sm border-2 border-purple-600 rounded-lg focus:border-purple-400 focus:outline-none transition-colors bg-gray-800 text-white"> <option value="">Pilih</option> <option value="percent">%</option> <option value="rupiah">Rp</option> </select>
           </div><!-- Input Value -->
           <div class="relative flex-1"><input type="text" id="take-profit-bersih" inputmode="numeric" placeholder="Pilih tipe dulu" disabled class="w-full px-2.5 py-1.5 pr-9 text-xs sm:text-sm border-2 border-gray-600 rounded-lg focus:border-purple-400 focus:outline-none transition-colors bg-gray-700 text-gray-400 placeholder-gray-500 disabled:cursor-not-allowed"> <button type="button" onclick="clearTakeProfitBersih();" class="absolute right-1 top-1/2 -translate-y-1/2 p-1 text-purple-400 hover:text-purple-300 hover:bg-purple-900/50 rounded transition-colors">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
@@ -216,13 +229,19 @@
            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
            </svg></button>
          </div>
+        </div><!-- Hasil Akhir yang Anda Terima (Kolom) -->
+        <div id="final-container-bersih" class="hidden"><label class="block text-xs font-semibold text-green-300 mb-1">Harga Tampilan Di Akulaku</label>
+         <div class="relative"><input type="text" id="final-value-bersih" readonly class="w-full px-2.5 py-1.5 pr-9 text-xs sm:text-sm border-2 border-green-600 rounded-lg bg-green-900/50 text-green-200 font-bold cursor-default"> <button type="button" id="copy-final-button-bersih" class="absolute right-1 top-1/2 -translate-y-1/2 p-1 text-green-400 hover:text-green-300 hover:bg-green-900/50 rounded transition-colors">
+           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+           </svg></button>
+         </div>
         </div>
        </form><!-- Hasil Bersih -->
        <div id="result-container-bersih" class="mt-2.5 hidden">
         <div class="bg-gradient-to-r from-purple-900 to-pink-900 border-2 border-purple-500 rounded-xl p-2.5 shadow-xl shadow-purple-500/50">
          <p class="text-xs font-semibold text-purple-200 mb-1 text-center">Rekomendasi Harga Jual Bersih</p>
          <div id="result-value-bersih" class="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-pink-300 text-center"></div>
-         <p class="text-xs text-purple-300 text-center mt-1">Harga yang Anda terima setelah semua potongan</p><!-- Tombol Copy --> <button id="copy-button-bersih" class="mt-2 w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold py-1.5 text-xs sm:text-sm rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 shadow-lg">
+         <p class="text-xs text-purple-300 text-center mt-1">Harga yang Anda terima setelah semua potongan</p><!-- Tombol Copy --> <button type="button" id="copy-button-bersih" class="mt-2 w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold py-1.5 text-xs sm:text-sm rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 shadow-lg">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
           </svg><span id="copy-text-bersih">Copy Harga</span> </button>
         </div>
@@ -232,8 +251,8 @@
     </div>
    </div><!-- Calculator Kotor Modal -->
    <div id="modal-kotor" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-    <div class="modal-container bg-gradient-to-br from-gray-900 to-black rounded-2xl shadow-2xl border-2 border-pink-600 w-full max-w-lg"><!-- Header with Close Button -->
-     <div class="bg-gradient-to-r from-gray-900 to-black border-b border-pink-600 p-3 sm:p-4 rounded-t-2xl">
+    <div class="modal-container bg-gradient-to-br from-gray-900 to-black rounded-2xl shadow-2xl border-2 border-pink-600 w-full max-w-lg max-h-[90vh] overflow-y-auto"><!-- Header with Close Button -->
+     <div class="bg-gradient-to-r from-gray-900 to-black border-b border-pink-600 p-3 sm:p-4 rounded-t-2xl sticky top-0 z-10">
       <div class="flex items-center justify-between">
        <h2 class="text-lg sm:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400">Kalkulator Harga Jual Kotor</h2><button onclick="switchTab('home')" class="text-gray-400 hover:text-white transition-colors p-1 hover:bg-gray-800 rounded-lg">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -243,14 +262,14 @@
      <div class="modal-content-wrapper p-3 sm:p-4">
       <form id="calculator-form-kotor" class="space-y-2"><!-- Harga Modal Produk -->
        <div><label for="harga-kotor" class="block text-xs font-semibold text-pink-300 mb-1">Harga Modal Produk Shopee (Rp)</label>
-        <div class="relative"><input type="text" id="harga-kotor" inputmode="numeric" placeholder="Contoh: 1,449,000" class="w-full px-2.5 py-1.5 pr-9 text-xs sm:text-sm border-2 border-pink-600 rounded-lg focus:border-pink-400 focus:outline-none transition-colors bg-gray-800 text-white placeholder-gray-500"> <button type="button" onclick="document.getElementById('harga-kotor').value = ''; hitungKotor();" class="absolute right-1 top-1/2 -translate-y-1/2 p-1 text-pink-400 hover:text-pink-300 hover:bg-pink-900/50 rounded transition-colors">
+        <div class="relative"><input type="text" id="harga-kotor" inputmode="numeric" placeholder="Contoh: 100,000" class="w-full px-2.5 py-1.5 pr-9 text-xs sm:text-sm border-2 border-pink-600 rounded-lg focus:border-pink-400 focus:outline-none transition-colors bg-gray-800 text-white placeholder-gray-500"> <button type="button" onclick="document.getElementById('harga-kotor').value = ''; hitungKotor();" class="absolute right-1 top-1/2 -translate-y-1/2 p-1 text-pink-400 hover:text-pink-300 hover:bg-pink-900/50 rounded transition-colors">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
           </svg></button>
         </div>
        </div><!-- Take Profit -->
        <div><label class="block text-xs font-semibold text-pink-300 mb-1">Take Profit</label>
         <div class="flex gap-2"><!-- Dropdown Pilihan -->
-         <div class="w-24"><select id="take-profit-type-kotor" class="w-full px-2 py-1.5 text-xs sm:text-sm border-2 border-pink-600 rounded-lg focus:border-pink-400 focus:outline-none transition-colors bg-gray-800 text-white"> <option value="">Pilih</option> <option value="percent">%</option> <option value="rupiah">Rp</option> </select>
+         <div class="w-20"><select id="take-profit-type-kotor" class="w-full px-2 py-1.5 text-xs sm:text-sm border-2 border-pink-600 rounded-lg focus:border-pink-400 focus:outline-none transition-colors bg-gray-800 text-white"> <option value="">Pilih</option> <option value="percent">%</option> <option value="rupiah">Rp</option> </select>
          </div><!-- Input Value -->
          <div class="relative flex-1"><input type="text" id="take-profit-kotor" inputmode="numeric" placeholder="Pilih tipe dulu" disabled class="w-full px-2.5 py-1.5 pr-9 text-xs sm:text-sm border-2 border-gray-600 rounded-lg focus:border-pink-400 focus:outline-none transition-colors bg-gray-700 text-gray-400 placeholder-gray-500 disabled:cursor-not-allowed"> <button type="button" onclick="clearTakeProfitKotor();" class="absolute right-1 top-1/2 -translate-y-1/2 p-1 text-pink-400 hover:text-pink-300 hover:bg-pink-900/50 rounded transition-colors">
            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
@@ -269,48 +288,123 @@
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
           </svg></button>
         </div>
+       </div><!-- Hasil Akhir yang Anda Terima (Kolom) -->
+       <div id="final-container-kotor" class="hidden"><label class="block text-xs font-semibold text-green-300 mb-1">Harga Tampilan Di Akulaku</label>
+        <div class="relative"><input type="text" id="final-value-kotor" readonly class="w-full px-2.5 py-1.5 pr-9 text-xs sm:text-sm border-2 border-green-600 rounded-lg bg-green-900/50 text-green-200 font-bold cursor-default"> <button type="button" id="copy-final-button-kotor" class="absolute right-1 top-1/2 -translate-y-1/2 p-1 text-green-400 hover:text-green-300 hover:bg-green-900/50 rounded transition-colors">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+          </svg></button>
+        </div>
        </div>
       </form><!-- Hasil Kotor -->
       <div id="result-container-kotor" class="mt-2.5 hidden">
        <div class="bg-gradient-to-r from-pink-900 to-purple-900 border-2 border-pink-500 rounded-xl p-2.5 shadow-xl shadow-pink-500/50">
-        <p class="text-xs font-semibold text-pink-200 mb-1 text-center">Harga Jual Kotor yang Harus Diset</p>
+        <p class="text-xs font-semibold text-pink-200 mb-1 text-center">Rekomendasi Harga Jual Kotor</p>
         <div id="result-value-kotor" class="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-300 to-purple-300 text-center"></div>
-        <p class="text-xs text-pink-300 text-center mt-1">Harga yang customer bayar sebelum potongan</p><!-- Tombol Copy --> <button id="copy-button-kotor" class="mt-2 w-full bg-gradient-to-r from-pink-600 to-purple-600 text-white font-semibold py-1.5 text-xs sm:text-sm rounded-lg hover:from-pink-700 hover:to-purple-700 transition-all transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 shadow-lg">
+        <p class="text-xs text-pink-300 text-center mt-1">Harga yang Anda set tanpa potongan platform</p><!-- Tombol Copy --> <button type="button" id="copy-button-kotor" class="mt-2 w-full bg-gradient-to-r from-pink-600 to-purple-600 text-white font-semibold py-1.5 text-xs sm:text-sm rounded-lg hover:from-pink-700 hover:to-purple-700 transition-all transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 shadow-lg">
          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
          </svg><span id="copy-text-kotor">Copy Harga</span> </button>
        </div>
       </div>
      </div>
-    </div><!-- Pop-up Notification -->
-    <div id="popup-notification" class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 hidden">
-     <div class="bg-gradient-to-r from-red-600 to-pink-600 text-white px-4 py-3 rounded-lg shadow-2xl border-2 border-red-400 max-w-sm mx-auto">
-      <div class="flex items-center gap-3">
-       <div class="flex-shrink-0">
-        <svg id="popup-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.464 0L4.35 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
-        </svg>
-       </div>
-       <div class="flex-1">
-        <p id="popup-message" class="text-sm font-semibold"></p>
-       </div><button onclick="hidePopup()" class="flex-shrink-0 text-white hover:text-gray-200 transition-colors">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+    </div>
+   </div> <!-- Calculator Bundling Modal -->
+   <div id="modal-bundling" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="modal-container bg-gradient-to-br from-gray-900 to-black rounded-2xl shadow-2xl border-2 border-blue-600 w-full max-w-lg"><!-- Header with Close Button -->
+     <div class="bg-gradient-to-r from-gray-900 to-black border-b border-blue-600 p-3 sm:p-4 rounded-t-2xl sticky top-0 z-10">
+      <div class="flex items-center justify-between">
+       <h2 class="text-lg sm:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Kalkulator Harga Bundling</h2><button onclick="switchTab('home')" class="text-gray-400 hover:text-white transition-colors p-1 hover:bg-gray-800 rounded-lg">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
         </svg></button>
       </div>
+     </div><!-- Content Area -->
+     <div class="modal-content-wrapper p-3 sm:p-4 max-h-[calc(90vh-80px)] overflow-y-auto"><!-- Kalkulator Bundling Tab -->
+      <div id="content-bundling" class="tab-content active">
+       <form id="calculator-form-bundling" class="space-y-2"><!-- Kategori Produk -->
+        <div><label for="kategori-bundling" class="block text-xs font-semibold text-blue-300 mb-1">Kategori Produk</label> <select id="kategori-bundling" class="w-full px-2.5 py-1.5 text-xs sm:text-sm border-2 border-blue-600 rounded-lg focus:border-blue-400 focus:outline-none transition-colors bg-gray-800 text-white"> <option value="">-- Pilih Kategori --</option> <option value="ponsel">Ponsel</option> <option value="pc">PC</option> <option value="aksesoris">Aksesoris Ponsel, Elektronik, Digital</option> <option value="perlengkapan">Fashion, Hobi, Kecantikan &amp; Lainnya</option> <option value="ponsel-bekas">Ponsel Bekas (Second)</option> </select>
+        </div><!-- Biaya Layanan (Auto) -->
+        <div class="grid grid-cols-2 gap-2">
+         <div class="bg-gradient-to-br from-blue-900 to-blue-800 p-2 rounded-lg border border-blue-500"><label class="block text-xs font-semibold text-blue-300 mb-0.5">Biaya Layanan</label>
+          <div id="biaya-layanan-bundling" class="text-base font-bold text-blue-200">
+           -
+          </div>
+         </div><!-- Biaya Komisi (Auto) -->
+         <div class="bg-gradient-to-br from-purple-900 to-blue-900 p-2 rounded-lg border border-purple-500"><label class="block text-xs font-semibold text-purple-300 mb-0.5">Biaya Komisi</label>
+          <div id="biaya-komisi-bundling" class="text-base font-bold text-purple-200">
+           -
+          </div>
+         </div>
+        </div><!-- Harga Satuan -->
+        <div><label for="harga-bundling" class="block text-xs font-semibold text-blue-300 mb-1">Harga Satuan (Rp)</label>
+         <div class="relative"><input type="text" id="harga-bundling" inputmode="numeric" placeholder="Contoh: 100,000" class="w-full px-2.5 py-1.5 pr-9 text-xs sm:text-sm border-2 border-blue-600 rounded-lg focus:border-blue-400 focus:outline-none transition-colors bg-gray-800 text-white placeholder-gray-500"> <button type="button" onclick="document.getElementById('harga-bundling').value = ''; hitungBundling();" class="absolute right-1 top-1/2 -translate-y-1/2 p-1 text-blue-400 hover:text-blue-300 hover:bg-blue-900/50 rounded transition-colors">
+           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+           </svg></button>
+         </div>
+        </div><!-- Take Profit -->
+        <div><label class="block text-xs font-semibold text-blue-300 mb-1">Take Profit</label>
+         <div class="flex gap-2"><!-- Dropdown Pilihan -->
+          <div class="w-20"><select id="take-profit-type-bundling" class="w-full px-2 py-1.5 text-xs sm:text-sm border-2 border-blue-600 rounded-lg focus:border-blue-400 focus:outline-none transition-colors bg-gray-800 text-white"> <option value="">Pilih</option> <option value="percent">%</option> <option value="rupiah">Rp</option> </select>
+          </div><!-- Input Value -->
+          <div class="relative flex-1"><input type="text" id="take-profit-bundling" inputmode="numeric" placeholder="Pilih tipe dulu" disabled class="w-full px-2.5 py-1.5 pr-9 text-xs sm:text-sm border-2 border-gray-600 rounded-lg focus:border-blue-400 focus:outline-none transition-colors bg-gray-700 text-gray-400 placeholder-gray-500 disabled:cursor-not-allowed"> <button type="button" onclick="clearTakeProfitBundling();" class="absolute right-1 top-1/2 -translate-y-1/2 p-1 text-blue-400 hover:text-blue-300 hover:bg-blue-900/50 rounded transition-colors">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+            </svg></button>
+          </div>
+         </div>
+        </div><!-- Berapa Pcs? -->
+        <div><label for="quantity-bundling" class="block text-xs font-semibold text-blue-300 mb-1">Berapa Pcs?</label>
+         <div class="relative"><input type="number" id="quantity-bundling" placeholder="Contoh: 5" min="1" class="w-full px-2.5 py-1.5 pr-9 text-xs sm:text-sm border-2 border-blue-600 rounded-lg focus:border-blue-400 focus:outline-none transition-colors bg-gray-800 text-white placeholder-gray-500"> <button type="button" onclick="document.getElementById('quantity-bundling').value = ''; hitungBundling();" class="absolute right-1 top-1/2 -translate-y-1/2 p-1 text-blue-400 hover:text-blue-300 hover:bg-blue-900/50 rounded transition-colors">
+           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+           </svg></button>
+         </div>
+        </div><!-- Voucher -->
+        <div><label for="voucher-bundling" class="block text-xs font-semibold text-blue-300 mb-1">Voucher Akulaku (Rp)</label>
+         <div class="relative"><input type="text" id="voucher-bundling" inputmode="numeric" placeholder="Contoh: 20,000" class="w-full px-2.5 py-1.5 pr-9 text-xs sm:text-sm border-2 border-blue-600 rounded-lg focus:border-blue-400 focus:outline-none transition-colors bg-gray-800 text-white placeholder-gray-500"> <button type="button" onclick="document.getElementById('voucher-bundling').value = ''; hitungBundling();" class="absolute right-1 top-1/2 -translate-y-1/2 p-1 text-blue-400 hover:text-blue-300 hover:bg-blue-900/50 rounded transition-colors">
+           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+           </svg></button>
+         </div>
+        </div><!-- Diskon Akulaku -->
+        <div><label for="diskon-bundling" class="block text-xs font-semibold text-blue-300 mb-1">Diskon Akulaku (%)</label>
+         <div class="relative"><input type="number" id="diskon-bundling" placeholder="Contoh: 5" class="w-full px-2.5 py-1.5 pr-9 text-xs sm:text-sm border-2 border-blue-600 rounded-lg focus:border-blue-400 focus:outline-none transition-colors bg-gray-800 text-white placeholder-gray-500" min="0" max="99" step="0.1" maxlength="2"> <button type="button" onclick="document.getElementById('diskon-bundling').value = ''; hitungBundling();" class="absolute right-1 top-1/2 -translate-y-1/2 p-1 text-blue-400 hover:text-blue-300 hover:bg-blue-900/50 rounded transition-colors">
+           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+           </svg></button>
+         </div>
+        </div><!-- Hasil Akhir yang Anda Terima (Kolom) -->
+        <div id="final-container-bundling" class="hidden"><label class="block text-xs font-semibold text-green-300 mb-1">Harga Tampilan Di Akulaku</label>
+         <div class="relative"><input type="text" id="final-value-bundling" readonly class="w-full px-2.5 py-1.5 pr-9 text-xs sm:text-sm border-2 border-green-600 rounded-lg bg-green-900/50 text-green-200 font-bold cursor-default"> <button type="button" id="copy-final-button-bundling" class="absolute right-1 top-1/2 -translate-y-1/2 p-1 text-green-400 hover:text-green-300 hover:bg-green-900/50 rounded transition-colors">
+           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+           </svg></button>
+         </div>
+        </div>
+       </form><!-- Hasil Bundling -->
+       <div id="result-container-bundling" class="mt-2.5 hidden">
+        <div class="bg-gradient-to-r from-blue-900 to-purple-900 border-2 border-blue-500 rounded-xl p-2.5 shadow-xl shadow-blue-500/50">
+         <p class="text-xs font-semibold text-blue-200 mb-1 text-center">Rekomendasi Harga Jual Bundling</p>
+         <div id="result-value-bundling" class="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-purple-300 text-center"></div>
+         <p class="text-xs text-blue-300 text-center mt-1">Harga bundling setelah semua potongan</p><!-- Tombol Copy --> <button type="button" id="copy-button-bundling" class="mt-2 w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-1.5 text-xs sm:text-sm rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 shadow-lg">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+          </svg><span id="copy-text-bundling">Copy Harga</span> </button>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div><!-- Pop-up Notification -->
+   <div id="popup-notification" class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 hidden">
+    <div class="bg-gradient-to-r from-red-600 to-pink-600 text-white px-4 py-3 rounded-lg shadow-2xl border-2 border-red-400 max-w-sm mx-auto">
+     <div class="flex items-center gap-3">
+      <div class="flex-shrink-0">
+       <svg id="popup-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.464 0L4.35 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+       </svg>
+      </div>
+      <div class="flex-1">
+       <p id="popup-message" class="text-sm font-semibold"></p>
+      </div><button onclick="hidePopup()" class="flex-shrink-0 text-white hover:text-gray-200 transition-colors">
+       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+       </svg></button>
      </div>
     </div>
    </div>
   </main>
   <script>
-    // Konfigurasi default
-    const defaultConfig = {
-      app_title: "Kalkulator Harga Jual",
-      welcome_message: "Selamat datang di Kalkulator Harga Jual!",
-      primary_color: "#a855f7",
-      secondary_color: "#ec4899",
-      background_color: "#1a0933",
-      text_color: "#d8b4fe",
-      accent_color: "#c084fc"
-    };
-
     // Data kategori dengan biaya
     const kategoriData = {
       'ponsel': { biayaLayanan: 1.5, biayaKomisi: 2.0 },
@@ -324,6 +418,10 @@
     let currentTab = 'home';
     let hasilBersih = 0;
     let hasilKotor = 0;
+    let hasilBundling = 0;
+    let hasilAkhirBersih = 0;
+    let hasilAkhirKotor = 0;
+    let hasilAkhirBundling = 0;
     let popupTimeout;
     let typingInterval;
     let currentOrientation = '';
@@ -332,10 +430,10 @@
     let typingActive = false;
     
     function startTypingAnimation() {
-      if (typingActive) return; // Prevent multiple instances
+      if (typingActive) return;
       
       const messages = [
-        "Welcome Mamang",
+        "Semangat Anak-Anak",
         "GOO PROFIT 1 MILIAR"
       ];
       
@@ -348,37 +446,34 @@
       typingActive = true;
       
       function typeMessage() {
-        if (!typingActive) return; // Check if animation should continue
+        if (!typingActive) return;
         
         const currentMessage = messages[messageIndex];
         
         if (charIndex < currentMessage.length) {
           typedTextEl.textContent = currentMessage.substring(0, charIndex + 1);
           charIndex++;
-          setTimeout(typeMessage, 100); // Slightly slower typing
+          setTimeout(typeMessage, 100);
         } else {
-          // Pause before starting to clear
           setTimeout(() => {
             if (!typingActive) return;
             
-            // Clear text with backspace effect
             function clearText() {
               if (!typingActive) return;
               
               if (charIndex > 0) {
                 charIndex--;
                 typedTextEl.textContent = currentMessage.substring(0, charIndex);
-                setTimeout(clearText, 40); // Slightly slower clearing
+                setTimeout(clearText, 40);
               } else {
                 messageIndex = (messageIndex + 1) % messages.length;
-                // Longer pause between messages
                 setTimeout(() => {
                   if (typingActive) typeMessage();
                 }, 800);
               }
             }
             clearText();
-          }, 3000); // Longer display time
+          }, 3000);
         }
       }
       
@@ -402,7 +497,6 @@
     }
 
     function handleOrientationChange(orientation) {
-      // Adjust modal container for landscape mobile
       const modalContainers = document.querySelectorAll('.modal-container');
       
       if (orientation === 'landscape' && window.innerHeight < 600) {
@@ -441,41 +535,36 @@
       const homeContent = document.getElementById('content-home');
       const modalBersih = document.getElementById('modal-bersih');
       const modalKotor = document.getElementById('modal-kotor');
+      const modalBundling = document.getElementById('modal-bundling');
       
-      // Stop typing animation when leaving home
       if (currentTab === 'home' && tab !== 'home') {
         stopTypingAnimation();
       }
       
-      // Hide all modals first
       modalBersih.classList.add('hidden');
       modalKotor.classList.add('hidden');
+      modalBundling.classList.add('hidden');
       
       if (tab === 'home') {
-        // Show home
         homeContent.classList.remove('hidden');
         homeContent.classList.add('active');
         
-        // Start typing animation with delay
         setTimeout(() => {
           startTypingAnimation();
         }, 300);
       } else if (tab === 'bersih') {
-        // Show bersih modal
         modalBersih.classList.remove('hidden');
-        // Check orientation when opening modal
         detectOrientation();
       } else if (tab === 'kotor') {
-        // Show kotor modal
         modalKotor.classList.remove('hidden');
-        // Check orientation when opening modal
+        detectOrientation();
+      } else if (tab === 'bundling') {
+        modalBundling.classList.remove('hidden');
         detectOrientation();
       }
       
       currentTab = tab;
     }
-
-    // Modal can ONLY be closed via close button - no backdrop click closing
 
     // Fungsi untuk memformat angka ke format Rupiah
     function formatRupiah(angka) {
@@ -495,17 +584,14 @@
       
       messageEl.textContent = message;
       
-      // Update icon berdasarkan tipe
       if (type === 'warning') {
         iconEl.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.464 0L4.35 16.5c-.77.833.192 2.5 1.732 2.5z"></path>';
         popup.querySelector('div').className = 'bg-gradient-to-r from-red-600 to-pink-600 text-white px-4 py-3 rounded-lg shadow-2xl border-2 border-red-400 max-w-sm mx-auto';
       }
       
-      // Tampilkan popup dengan animasi
       popup.classList.remove('hidden');
       popup.classList.add('popup-enter');
       
-      // Auto hide setelah 4 detik
       clearTimeout(popupTimeout);
       popupTimeout = setTimeout(() => {
         hidePopup();
@@ -523,15 +609,14 @@
       }, 300);
     }
 
-    // Fungsi untuk membersihkan format angka (hapus titik dan koma)
+    // Fungsi untuk membersihkan format angka
     function cleanNumber(value) {
       if (!value) return 0;
-      // Hapus semua karakter selain angka
       const cleaned = value.toString().replace(/[^\d]/g, '');
       return parseFloat(cleaned) || 0;
     }
 
-    // Fungsi untuk memformat angka dengan koma (format #,##0)
+    // Fungsi untuk memformat angka dengan koma
     function formatNumber(num) {
       if (!num || num === 0) return '';
       return new Intl.NumberFormat('id-ID').format(num);
@@ -539,7 +624,6 @@
 
     // KALKULATOR BERSIH FUNCTIONS
     function setupBersihEventListeners() {
-      // Update biaya saat kategori dipilih
       document.getElementById('kategori-bersih').addEventListener('change', function() {
         const kategori = this.value;
         const biayaLayananEl = document.getElementById('biaya-layanan-bersih');
@@ -556,7 +640,6 @@
         hitungBersih();
       });
 
-      // Handle take profit type change
       document.getElementById('take-profit-type-bersih').addEventListener('change', function() {
         const takeProfitInput = document.getElementById('take-profit-bersih');
         const type = this.value;
@@ -584,14 +667,12 @@
         }
       });
 
-      // Handle take profit input click when disabled
       document.getElementById('take-profit-bersih').addEventListener('click', function() {
         if (this.disabled) {
           showPopup('Silakan pilih tipe Take Profit terlebih dahulu (% atau Rp)', 'warning');
         }
       });
 
-      // Handle take profit input validation
       document.getElementById('take-profit-bersih').addEventListener('input', function() {
         const type = document.getElementById('take-profit-type-bersih').value;
         const value = this.value;
@@ -610,7 +691,6 @@
         hitungBersih();
       });
 
-      // Handle diskon input validation
       document.getElementById('diskon-bersih').addEventListener('input', function() {
         const value = parseFloat(this.value);
         
@@ -626,7 +706,6 @@
         hitungBersih();
       });
 
-      // Handle harga input formatting - real-time calculation
       let hargaBersihTimeout;
       const hargaBersihInput = document.getElementById('harga-bersih');
       
@@ -640,25 +719,21 @@
           const formatted = formatNumber(numValue);
           this.value = formatted;
           
-          // Restore cursor position
           const newLength = formatted.length;
           const newCursorPos = cursorPos + (newLength - oldLength);
           this.setSelectionRange(newCursorPos, newCursorPos);
         }
         
-        // Debounce calculation untuk performa lebih baik
         clearTimeout(hargaBersihTimeout);
         hargaBersihTimeout = setTimeout(() => {
           hitungBersih();
         }, 300);
       });
       
-      // Prevent blur on format
       hargaBersihInput.addEventListener('focus', function() {
         this.setAttribute('inputmode', 'numeric');
       });
 
-      // Handle voucher input formatting - real-time calculation
       let voucherBersihTimeout;
       const voucherBersihInput = document.getElementById('voucher-bersih');
       
@@ -672,35 +747,31 @@
           const formatted = formatNumber(numValue);
           this.value = formatted;
           
-          // Restore cursor position
           const newLength = formatted.length;
           const newCursorPos = cursorPos + (newLength - oldLength);
           this.setSelectionRange(newCursorPos, newCursorPos);
         }
         
-        // Debounce calculation untuk performa lebih baik
         clearTimeout(voucherBersihTimeout);
         voucherBersihTimeout = setTimeout(() => {
           hitungBersih();
         }, 300);
       });
       
-      // Prevent blur on format
       voucherBersihInput.addEventListener('focus', function() {
         this.setAttribute('inputmode', 'numeric');
       });
 
-      // Copy button
       document.getElementById('copy-button-bersih').addEventListener('click', function() {
         const angkaTanpaFormat = hasilBersih.toString();
+        const button = this;
+        const originalHTML = button.innerHTML;
         
         navigator.clipboard.writeText(angkaTanpaFormat).then(() => {
-          const copyText = document.getElementById('copy-text-bersih');
-          const originalText = copyText.textContent;
-          copyText.textContent = '✓ Tersalin!';
+          button.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>';
           
           setTimeout(() => {
-            copyText.textContent = originalText;
+            button.innerHTML = originalHTML;
           }, 2000);
         }).catch(() => {
           const textarea = document.createElement('textarea');
@@ -712,12 +783,39 @@
           document.execCommand('copy');
           document.body.removeChild(textarea);
           
-          const copyText = document.getElementById('copy-text-bersih');
-          const originalText = copyText.textContent;
-          copyText.textContent = '✓ Tersalin!';
+          button.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>';
           
           setTimeout(() => {
-            copyText.textContent = originalText;
+            button.innerHTML = originalHTML;
+          }, 2000);
+        });
+      });
+
+      document.getElementById('copy-final-button-bersih').addEventListener('click', function() {
+        const angkaTanpaFormat = hasilAkhirBersih.toString();
+        const button = this;
+        const originalHTML = button.innerHTML;
+        
+        navigator.clipboard.writeText(angkaTanpaFormat).then(() => {
+          button.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>';
+          
+          setTimeout(() => {
+            button.innerHTML = originalHTML;
+          }, 2000);
+        }).catch(() => {
+          const textarea = document.createElement('textarea');
+          textarea.value = angkaTanpaFormat;
+          textarea.style.position = 'fixed';
+          textarea.style.opacity = '0';
+          document.body.appendChild(textarea);
+          textarea.select();
+          document.execCommand('copy');
+          document.body.removeChild(textarea);
+          
+          button.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>';
+          
+          setTimeout(() => {
+            button.innerHTML = originalHTML;
           }, 2000);
         });
       });
@@ -738,6 +836,7 @@
       
       if (!kategori || harga <= 0) {
         document.getElementById('result-container-bersih').classList.add('hidden');
+        document.getElementById('final-container-bersih').classList.add('hidden');
         return;
       }
       
@@ -756,19 +855,28 @@
       const Q = voucher;
       const R = diskon / 100;
       
+      // Rumus: ((P / (1 - (N + O)) + Q) / (1 - R))
       const hasil = (P / (1 - (N + O)) + Q) / (1 - R);
       hasilBersih = Math.round(hasil);
       
+      // Hitung hasil akhir: Harga Bersih - (Harga Bersih * Diskon%) - Voucher
+      const potonganDiskon = hasil * R;
+      const hasilAkhir = hasil - potonganDiskon - voucher;
+      hasilAkhirBersih = Math.round(hasilAkhir);
+      
       const resultContainer = document.getElementById('result-container-bersih');
       const resultValue = document.getElementById('result-value-bersih');
+      const finalContainer = document.getElementById('final-container-bersih');
+      const finalValue = document.getElementById('final-value-bersih');
       
       resultValue.textContent = formatRupiah(hasil);
+      finalValue.value = formatRupiah(hasilAkhir);
       resultContainer.classList.remove('hidden');
+      finalContainer.classList.remove('hidden');
     }
 
     // KALKULATOR KOTOR FUNCTIONS
     function setupKotorEventListeners() {
-      // Handle take profit type change
       document.getElementById('take-profit-type-kotor').addEventListener('change', function() {
         const takeProfitInput = document.getElementById('take-profit-kotor');
         const type = this.value;
@@ -796,14 +904,12 @@
         }
       });
 
-      // Handle take profit input click when disabled
       document.getElementById('take-profit-kotor').addEventListener('click', function() {
         if (this.disabled) {
           showPopup('Silakan pilih tipe Take Profit terlebih dahulu (% atau Rp)', 'warning');
         }
       });
 
-      // Handle take profit input validation
       document.getElementById('take-profit-kotor').addEventListener('input', function() {
         const type = document.getElementById('take-profit-type-kotor').value;
         const value = this.value;
@@ -822,7 +928,6 @@
         hitungKotor();
       });
 
-      // Handle diskon input validation
       document.getElementById('diskon-kotor').addEventListener('input', function() {
         const value = parseFloat(this.value);
         
@@ -838,7 +943,6 @@
         hitungKotor();
       });
 
-      // Handle harga input formatting - real-time calculation
       let hargaKotorTimeout;
       const hargaKotorInput = document.getElementById('harga-kotor');
       
@@ -852,25 +956,21 @@
           const formatted = formatNumber(numValue);
           this.value = formatted;
           
-          // Restore cursor position
           const newLength = formatted.length;
           const newCursorPos = cursorPos + (newLength - oldLength);
           this.setSelectionRange(newCursorPos, newCursorPos);
         }
         
-        // Debounce calculation untuk performa lebih baik
         clearTimeout(hargaKotorTimeout);
         hargaKotorTimeout = setTimeout(() => {
           hitungKotor();
         }, 300);
       });
       
-      // Prevent blur on format
       hargaKotorInput.addEventListener('focus', function() {
         this.setAttribute('inputmode', 'numeric');
       });
 
-      // Handle voucher input formatting - real-time calculation
       let voucherKotorTimeout;
       const voucherKotorInput = document.getElementById('voucher-kotor');
       
@@ -884,35 +984,31 @@
           const formatted = formatNumber(numValue);
           this.value = formatted;
           
-          // Restore cursor position
           const newLength = formatted.length;
           const newCursorPos = cursorPos + (newLength - oldLength);
           this.setSelectionRange(newCursorPos, newCursorPos);
         }
         
-        // Debounce calculation untuk performa lebih baik
         clearTimeout(voucherKotorTimeout);
         voucherKotorTimeout = setTimeout(() => {
           hitungKotor();
         }, 300);
       });
       
-      // Prevent blur on format
       voucherKotorInput.addEventListener('focus', function() {
         this.setAttribute('inputmode', 'numeric');
       });
 
-      // Copy button
       document.getElementById('copy-button-kotor').addEventListener('click', function() {
         const angkaTanpaFormat = hasilKotor.toString();
+        const button = this;
+        const originalHTML = button.innerHTML;
         
         navigator.clipboard.writeText(angkaTanpaFormat).then(() => {
-          const copyText = document.getElementById('copy-text-kotor');
-          const originalText = copyText.textContent;
-          copyText.textContent = '��� Tersalin!';
+          button.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>';
           
           setTimeout(() => {
-            copyText.textContent = originalText;
+            button.innerHTML = originalHTML;
           }, 2000);
         }).catch(() => {
           const textarea = document.createElement('textarea');
@@ -924,12 +1020,39 @@
           document.execCommand('copy');
           document.body.removeChild(textarea);
           
-          const copyText = document.getElementById('copy-text-kotor');
-          const originalText = copyText.textContent;
-          copyText.textContent = '✓ Tersalin!';
+          button.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>';
           
           setTimeout(() => {
-            copyText.textContent = originalText;
+            button.innerHTML = originalHTML;
+          }, 2000);
+        });
+      });
+
+      document.getElementById('copy-final-button-kotor').addEventListener('click', function() {
+        const angkaTanpaFormat = hasilAkhirKotor.toString();
+        const button = this;
+        const originalHTML = button.innerHTML;
+        
+        navigator.clipboard.writeText(angkaTanpaFormat).then(() => {
+          button.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>';
+          
+          setTimeout(() => {
+            button.innerHTML = originalHTML;
+          }, 2000);
+        }).catch(() => {
+          const textarea = document.createElement('textarea');
+          textarea.value = angkaTanpaFormat;
+          textarea.style.position = 'fixed';
+          textarea.style.opacity = '0';
+          document.body.appendChild(textarea);
+          textarea.select();
+          document.execCommand('copy');
+          document.body.removeChild(textarea);
+          
+          button.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>';
+          
+          setTimeout(() => {
+            button.innerHTML = originalHTML;
           }, 2000);
         });
       });
@@ -949,9 +1072,268 @@
       
       if (harga <= 0) {
         document.getElementById('result-container-kotor').classList.add('hidden');
+        document.getElementById('final-container-kotor').classList.add('hidden');
         return;
       }
       
+      // Hitung Take Profit nominal
+      let takeProfitNominal = 0;
+      if (takeProfitType && takeProfitValue > 0) {
+        if (takeProfitType === 'percent') {
+          takeProfitNominal = harga * (takeProfitValue / 100);
+        } else {
+          takeProfitNominal = takeProfitValue;
+        }
+      }
+      
+      // Harga dengan profit
+      const hargaDenganProfit = harga + takeProfitNominal;
+      
+      const R = diskon / 100;
+      
+      // Rumus: ((hargaDenganProfit + voucher) / (1 - R))
+      const hasil = (hargaDenganProfit + voucher) / (1 - R);
+      hasilKotor = Math.round(hasil);
+      
+      // Hasil Akhir = Harga Modal + Take Profit (tanpa potongan platform)
+      const hasilAkhir = harga + takeProfitNominal;
+      hasilAkhirKotor = Math.round(hasilAkhir);
+      
+      const resultContainer = document.getElementById('result-container-kotor');
+      const resultValue = document.getElementById('result-value-kotor');
+      const finalContainer = document.getElementById('final-container-kotor');
+      const finalValue = document.getElementById('final-value-kotor');
+      
+      resultValue.textContent = formatRupiah(hasil);
+      finalValue.value = formatRupiah(hasilAkhir);
+      resultContainer.classList.remove('hidden');
+      finalContainer.classList.remove('hidden');
+    }
+
+    // KALKULATOR BUNDLING FUNCTIONS
+    function setupBundlingEventListeners() {
+      document.getElementById('kategori-bundling').addEventListener('change', function() {
+        const kategori = this.value;
+        const biayaLayananEl = document.getElementById('biaya-layanan-bundling');
+        const biayaKomisiEl = document.getElementById('biaya-komisi-bundling');
+        
+        if (kategori && kategoriData[kategori]) {
+          biayaLayananEl.textContent = kategoriData[kategori].biayaLayanan + '%';
+          biayaKomisiEl.textContent = kategoriData[kategori].biayaKomisi + '%';
+        } else {
+          biayaLayananEl.textContent = '-';
+          biayaKomisiEl.textContent = '-';
+        }
+        
+        hitungBundling();
+      });
+
+      document.getElementById('take-profit-type-bundling').addEventListener('change', function() {
+        const takeProfitInput = document.getElementById('take-profit-bundling');
+        const type = this.value;
+        
+        if (type) {
+          takeProfitInput.disabled = false;
+          takeProfitInput.classList.remove('bg-gray-700', 'text-gray-400', 'border-gray-600', 'disabled:cursor-not-allowed');
+          takeProfitInput.classList.add('bg-gray-800', 'text-white', 'border-blue-600');
+          
+          if (type === 'percent') {
+            takeProfitInput.placeholder = 'Contoh: 10 (maks 999)';
+          } else {
+            takeProfitInput.placeholder = 'Contoh: 100,000';
+          }
+          
+          takeProfitInput.value = '';
+          hitungBundling();
+        } else {
+          takeProfitInput.disabled = true;
+          takeProfitInput.classList.add('bg-gray-700', 'text-gray-400', 'border-gray-600', 'disabled:cursor-not-allowed');
+          takeProfitInput.classList.remove('bg-gray-800', 'text-white', 'border-blue-600');
+          takeProfitInput.placeholder = 'Pilih tipe dulu';
+          takeProfitInput.value = '';
+          hitungBundling();
+        }
+      });
+
+      document.getElementById('take-profit-bundling').addEventListener('click', function() {
+        if (this.disabled) {
+          showPopup('Silakan pilih tipe Take Profit terlebih dahulu (% atau Rp)', 'warning');
+        }
+      });
+
+      document.getElementById('take-profit-bundling').addEventListener('input', function() {
+        const type = document.getElementById('take-profit-type-bundling').value;
+        const value = this.value;
+        
+        if (type === 'percent' && value) {
+          const numValue = cleanNumber(value);
+          if (numValue > 999) {
+            showPopup('Untuk nilai lebih dari 999, silakan ubah pilihan ke Rupiah (Rp)', 'warning');
+            this.value = '999';
+          }
+        } else if (type === 'rupiah' && value) {
+          const numValue = cleanNumber(value);
+          this.value = formatNumber(numValue);
+        }
+        
+        hitungBundling();
+      });
+
+      document.getElementById('quantity-bundling').addEventListener('input', function() {
+        hitungBundling();
+      });
+
+      document.getElementById('diskon-bundling').addEventListener('input', function() {
+        const value = parseFloat(this.value);
+        
+        if (value && (value < 1 || value > 99)) {
+          showPopup('Diskon Akulaku harus antara 1% - 99%', 'warning');
+          if (value < 1) {
+            this.value = '1';
+          } else if (value > 99) {
+            this.value = '99';
+          }
+        }
+        
+        hitungBundling();
+      });
+
+      let hargaBundlingTimeout;
+      const hargaBundlingInput = document.getElementById('harga-bundling');
+      
+      hargaBundlingInput.addEventListener('input', function() {
+        const value = this.value;
+        const cursorPos = this.selectionStart;
+        const oldLength = value.length;
+        
+        if (value) {
+          const numValue = cleanNumber(value);
+          const formatted = formatNumber(numValue);
+          this.value = formatted;
+          
+          const newLength = formatted.length;
+          const newCursorPos = cursorPos + (newLength - oldLength);
+          this.setSelectionRange(newCursorPos, newCursorPos);
+        }
+        
+        clearTimeout(hargaBundlingTimeout);
+        hargaBundlingTimeout = setTimeout(() => {
+          hitungBundling();
+        }, 300);
+      });
+      
+      hargaBundlingInput.addEventListener('focus', function() {
+        this.setAttribute('inputmode', 'numeric');
+      });
+
+      let voucherBundlingTimeout;
+      const voucherBundlingInput = document.getElementById('voucher-bundling');
+      
+      voucherBundlingInput.addEventListener('input', function() {
+        const value = this.value;
+        const cursorPos = this.selectionStart;
+        const oldLength = value.length;
+        
+        if (value) {
+          const numValue = cleanNumber(value);
+          const formatted = formatNumber(numValue);
+          this.value = formatted;
+          
+          const newLength = formatted.length;
+          const newCursorPos = cursorPos + (newLength - oldLength);
+          this.setSelectionRange(newCursorPos, newCursorPos);
+        }
+        
+        clearTimeout(voucherBundlingTimeout);
+        voucherBundlingTimeout = setTimeout(() => {
+          hitungBundling();
+        }, 300);
+      });
+      
+      voucherBundlingInput.addEventListener('focus', function() {
+        this.setAttribute('inputmode', 'numeric');
+      });
+
+      document.getElementById('copy-button-bundling').addEventListener('click', function() {
+        const angkaTanpaFormat = hasilBundling.toString();
+        const button = this;
+        const originalHTML = button.innerHTML;
+        
+        navigator.clipboard.writeText(angkaTanpaFormat).then(() => {
+          button.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>';
+          
+          setTimeout(() => {
+            button.innerHTML = originalHTML;
+          }, 2000);
+        }).catch(() => {
+          const textarea = document.createElement('textarea');
+          textarea.value = angkaTanpaFormat;
+          textarea.style.position = 'fixed';
+          textarea.style.opacity = '0';
+          document.body.appendChild(textarea);
+          textarea.select();
+          document.execCommand('copy');
+          document.body.removeChild(textarea);
+          
+          button.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>';
+          
+          setTimeout(() => {
+            button.innerHTML = originalHTML;
+          }, 2000);
+        });
+      });
+
+      document.getElementById('copy-final-button-bundling').addEventListener('click', function() {
+        const angkaTanpaFormat = hasilAkhirBundling.toString();
+        const button = this;
+        const originalHTML = button.innerHTML;
+        
+        navigator.clipboard.writeText(angkaTanpaFormat).then(() => {
+          button.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>';
+          
+          setTimeout(() => {
+            button.innerHTML = originalHTML;
+          }, 2000);
+        }).catch(() => {
+          const textarea = document.createElement('textarea');
+          textarea.value = angkaTanpaFormat;
+          textarea.style.position = 'fixed';
+          textarea.style.opacity = '0';
+          document.body.appendChild(textarea);
+          textarea.select();
+          document.execCommand('copy');
+          document.body.removeChild(textarea);
+          
+          button.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>';
+          
+          setTimeout(() => {
+            button.innerHTML = originalHTML;
+          }, 2000);
+        });
+      });
+    }
+
+    function clearTakeProfitBundling() {
+      document.getElementById('take-profit-bundling').value = '';
+      hitungBundling();
+    }
+
+    function hitungBundling() {
+      const kategori = document.getElementById('kategori-bundling').value;
+      const harga = cleanNumber(document.getElementById('harga-bundling').value);
+      const takeProfitType = document.getElementById('take-profit-type-bundling').value;
+      const takeProfitValue = cleanNumber(document.getElementById('take-profit-bundling').value);
+      const quantity = parseInt(document.getElementById('quantity-bundling').value) || 0;
+      const voucher = cleanNumber(document.getElementById('voucher-bundling').value);
+      const diskon = parseFloat(document.getElementById('diskon-bundling').value) || 0;
+      
+      if (!kategori || harga <= 0 || quantity <= 0) {
+        document.getElementById('result-container-bundling').classList.add('hidden');
+        document.getElementById('final-container-bundling').classList.add('hidden');
+        return;
+      }
+      
+      // Hitung harga dengan profit per satuan
       let hargaDenganProfit = harga;
       if (takeProfitType && takeProfitValue > 0) {
         if (takeProfitType === 'percent') {
@@ -961,101 +1343,53 @@
         }
       }
       
-      // Rumus sederhana: Harga Kotor = Harga + Profit + Voucher + Diskon
-      const R = diskon / 100;
-      const hasil = (hargaDenganProfit + voucher) / (1 - R);
-      hasilKotor = Math.round(hasil);
+      // Kalikan dengan quantity
+      const totalHargaDenganProfit = hargaDenganProfit * quantity;
       
-      const resultContainer = document.getElementById('result-container-kotor');
-      const resultValue = document.getElementById('result-value-kotor');
+      const N = kategoriData[kategori].biayaLayanan / 100;
+      const O = kategoriData[kategori].biayaKomisi / 100;
+      const P = totalHargaDenganProfit;
+      const Q = voucher;
+      const R = diskon / 100;
+      
+      // Rumus: ((P / (1 - (N + O)) + Q) / (1 - R))
+      const hasil = (P / (1 - (N + O)) + Q) / (1 - R);
+      hasilBundling = Math.round(hasil);
+      
+      // Hitung hasil akhir: Harga Bundling - (Harga Bundling * Diskon%) - Voucher
+      const potonganDiskon = hasil * R;
+      const hasilAkhir = hasil - potonganDiskon - voucher;
+      hasilAkhirBundling = Math.round(hasilAkhir);
+      
+      const resultContainer = document.getElementById('result-container-bundling');
+      const resultValue = document.getElementById('result-value-bundling');
+      const finalContainer = document.getElementById('final-container-bundling');
+      const finalValue = document.getElementById('final-value-bundling');
       
       resultValue.textContent = formatRupiah(hasil);
+      finalValue.value = formatRupiah(hasilAkhir);
       resultContainer.classList.remove('hidden');
-    }
-
-    // Fungsi untuk update UI berdasarkan config
-    async function onConfigChange(config) {
-      // Update colors
-      const backgroundColor = config.background_color || defaultConfig.background_color;
-      document.body.style.backgroundColor = backgroundColor;
+      finalContainer.classList.remove('hidden');
     }
 
     // Initialize
     document.addEventListener('DOMContentLoaded', function() {
-      // Start typing animation
       startTypingAnimation();
       
-      // Update date time every second
       updateDateTime();
       setInterval(updateDateTime, 1000);
       
-      // Setup event listeners
       setupBersihEventListeners();
       setupKotorEventListeners();
+      setupBundlingEventListeners();
       
-      // Initialize orientation detection
       detectOrientation();
       
-      // Listen for orientation changes
       window.addEventListener('resize', detectOrientation);
       window.addEventListener('orientationchange', function() {
         setTimeout(detectOrientation, 100);
       });
     });
-
-    // Initialize Element SDK
-    if (window.elementSdk) {
-      window.elementSdk.init({
-        defaultConfig: defaultConfig,
-        onConfigChange: onConfigChange,
-        mapToCapabilities: (config) => ({
-          recolorables: [
-            {
-              get: () => config.primary_color || defaultConfig.primary_color,
-              set: (value) => {
-                config.primary_color = value;
-                window.elementSdk.setConfig({ primary_color: value });
-              }
-            },
-            {
-              get: () => config.secondary_color || defaultConfig.secondary_color,
-              set: (value) => {
-                config.secondary_color = value;
-                window.elementSdk.setConfig({ secondary_color: value });
-              }
-            },
-            {
-              get: () => config.background_color || defaultConfig.background_color,
-              set: (value) => {
-                config.background_color = value;
-                window.elementSdk.setConfig({ background_color: value });
-              }
-            },
-            {
-              get: () => config.text_color || defaultConfig.text_color,
-              set: (value) => {
-                config.text_color = value;
-                window.elementSdk.setConfig({ text_color: value });
-              }
-            },
-            {
-              get: () => config.accent_color || defaultConfig.accent_color,
-              set: (value) => {
-                config.accent_color = value;
-                window.elementSdk.setConfig({ accent_color: value });
-              }
-            }
-          ],
-          borderables: [],
-          fontEditable: undefined,
-          fontSizeable: undefined
-        }),
-        mapToEditPanelValues: (config) => new Map([
-          ["app_title", config.app_title || defaultConfig.app_title],
-          ["welcome_message", config.welcome_message || defaultConfig.welcome_message]
-        ])
-      });
-    }
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a92211f90d45d0f',t:'MTc2NDkyMjg4MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9af4ccea20bec649',t:'MTc2NTk1NzUyMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
